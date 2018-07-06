@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
+#include "aux.h"
 /*************************************************************************************/
 /*              TABELA ASCCI SIMPLIFICADA (para simples conferência).                */
 /* Essa tabela ASCCI pode ser útil no desenvolvimento de software para conferir os   */
@@ -12,6 +12,22 @@
 int main(int argc, char** argv) {
     const unsigned char shift = 16; // shift para alinhar tabelas
     unsigned char c;                // resumo dos argumentos delinha de comando
+
+    if (argc>2) {
+        printf("ERRO: muitos argumentos. Entre com o argumento -h para AJUDA\n");
+        exit(1);
+    }
+
+    if (argc==2) {
+        if (!strcmp(argv[1], "-h")) {
+            help();
+            exit(0);
+        }
+        if (!strcmp(argv[1], "-v")) {
+            version();
+            exit(0);
+        }
+    }
 
     printf("======================================================================\n");
     printf("                       TABELA ASCCI SIMPLIFICADA                      \n");
