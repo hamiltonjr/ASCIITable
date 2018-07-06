@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include "aux.h"
 /*************************************************************************************/
@@ -12,6 +13,8 @@
 int main(int argc, char** argv) {
     const unsigned char shift = 16; // shift para alinhar tabelas
     unsigned char c;                // resumo dos argumentos delinha de comando
+    bool flag_d = false;            // somente decimal
+    bool flag_x = false;            // somente hexadecimal
 
     if (argc>2) {
         printf("ERRO: muitos argumentos. Entre com o argumento -h para AJUDA\n");
@@ -27,6 +30,12 @@ int main(int argc, char** argv) {
             version();
             exit(0);
         }
+        if (!strcmp(argv[1], "-d")) {
+            flag_d = true;
+        }
+        if (!strcmp(argv[1], "-x")) {
+            flag_x = true;
+        }
     }
 
     printf("======================================================================\n");
@@ -40,15 +49,19 @@ int main(int argc, char** argv) {
         }
         printf("\n");
 
-        printf("| Dc |");
-        for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
-            printf(" %03d", c);  
+        if (!flag_x) {
+            printf("| Dc |");
+            for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
+                printf(" %03d", c);  
+            }
         }
         printf("\n");
 
-        printf("| Hx |");
-        for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
-            printf("  %x", c);
+        if (!flag_d) {
+            printf("| Hx |");
+            for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
+                printf("  %x", c);
+            }
         }
         printf("\n\n\n");
     }
