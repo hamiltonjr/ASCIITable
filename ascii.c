@@ -12,9 +12,9 @@
 int main(int argc, char** argv) {
     const unsigned char shift = 16; // shift for table alignment
     unsigned char c;                // command-line arguments
-    bool flag_o = false;            // oct codes are visible
-    bool flag_d = false;            // dec codes are visible
-    bool flag_x = false;            // hex codes are visible
+    bool flag_o = true;             // oct codes are visible
+    bool flag_d = true;             // dec codes are visible
+    bool flag_x = true;             // hex codes are visible
 
     if (argc>2) {
         printf("ERROR: many arguments. Enter -h for HELP\n");
@@ -25,18 +25,20 @@ int main(int argc, char** argv) {
         if (!strcmp(argv[1], "-h")) {
             help();
             exit(EXIT_SUCCESS);
-        }
-        if (!strcmp(argv[1], "-v")) {
+        } else if (!strcmp(argv[1], "-v")) {
             version();
             exit(EXIT_SUCCESS);
-        }
-        if (!strcmp(argv[1], "-o")) {
+        } else if (!strcmp(argv[1], "-o")) {
             flag_o = true;
-        }
-        if (!strcmp(argv[1], "-d")) {
+            flag_d = false;
+            flag_x = false;
+        } else if (!strcmp(argv[1], "-d")) {
+            flag_o = false;
             flag_d = true;
-        }
-        if (!strcmp(argv[1], "-x")) {
+            flag_x = false;
+        } else if (!strcmp(argv[1], "-x")) {
+            flag_o = false;
+            flag_d = false;
             flag_x = true;
         }
     }
@@ -54,7 +56,7 @@ int main(int argc, char** argv) {
         }
         printf("\n");
 
-        if (!flag_o) {
+        if (flag_o) {
             printf("| Oc |");
             for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
                 printf(" %03o", c);  
@@ -62,7 +64,7 @@ int main(int argc, char** argv) {
         }
         printf("\n");
 
-        if (!flag_x) {
+        if (flag_d) {
             printf("| Dc |");
             for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
                 printf(" %03d", c);  
@@ -70,7 +72,7 @@ int main(int argc, char** argv) {
         }
         printf("\n");
 
-        if (!flag_d) {
+        if (flag_x) {
             printf("| Hx |");
             for (unsigned char c=s*shift; c<(s+1)*shift; c++) {
                 printf("  %x", c);
