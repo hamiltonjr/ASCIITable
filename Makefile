@@ -9,3 +9,4 @@ OBJ = ascii.o aux.o
 ascii: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
+clean: rm -f *.o
