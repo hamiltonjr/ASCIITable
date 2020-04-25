@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include "aux.h"
+
 /***********************************************************************************/
 /*                           SIMPLE ASCCI TABLE                                    */
 /* This ASCCI table can be useful for software development, for remember the code  */
 /* of characters (oct / dec / hex code). Saved on the computer, it can be used in  */
 /* terminal directly.                                                              */
 /***********************************************************************************/
+
 void help() {
     printf("-------------------------------------------------------------------------\n");
     printf("This code show in screen an stylist ASCII table with the more used codes \n");
@@ -23,4 +25,3 @@ void help() {
  void version() {
      printf("Versão 1.0.1 2019-02\n");
  }
-
