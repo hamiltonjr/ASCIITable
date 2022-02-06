@@ -67,7 +67,7 @@ int main( int argc, char** argv ) {
 
 	// octal (visible only under command of user)
         if ( flag_o ) {
-            printf( "| Oc | ");
+            printf( "| Oc |");
             for ( unsigned char c=s*shift; c<(s+1)*shift; c++ ) {
                 printf( " %03o", c );  
             }
