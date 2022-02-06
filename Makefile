@@ -10,4 +10,5 @@ ascii: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 clean: 
-	rm ascii.o
+	rm *.o
+
